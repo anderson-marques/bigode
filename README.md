@@ -11,7 +11,7 @@ pug-generator context.json ./my-company-spring-boot-template
 
 ## Usage with inquire
 
-The Pug generator fits well with the [Inquire CLI](https://github.com/anderson-marques/homebrew-inquire). 
+The Pug generator fits well with the [Inquire CLI](https://github.com/anderson-marques/homebrew-inquire).
 
 Example:
 
@@ -22,4 +22,16 @@ $ Choose between Java or Kotlin:
 [x] - Kotlin
 [ ] - Java
 pug-generator answers.json ./my-company-spring-boot-template
+```
+
+## Example:
+
+```bash
+pug-generator -p my-awesome-project -t ./__test__/example-template -c answers.json
+```
+
+or
+
+```bash
+pug-generator --project-name my-awesome-project --template-project ./__test__/example-template --context-file answers.json
 ```
