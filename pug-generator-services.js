@@ -57,7 +57,14 @@ const listFilesInDirectory = async directoryPath => {
 
 const processDiretory = directory => fs.mkdirSync(directory.destination, { recursive: true }, err => { throw err } )
 
-const processTemplate = (source, destination, context) => fs.writeFileSync(destination, pug.compileFile(source)(context))
+const processTemplate = (template, context) =>  {
+   return new Promise((resolve, reject)=> {
+       const compiledFile = pug.compileFile(template.source)(context)
+       fs.writeFile(template.destination, compiledFile, (err)=>{
+           return err ? reject(err) : resolve()
+       })
+   })
+}
 
 module.exports = {
     pathExists,

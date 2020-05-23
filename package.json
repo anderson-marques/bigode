@@ -1,10 +1,11 @@
 {
   "name": "pug-generator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple generator that take some files and generate a project",
   "main": "pug-generator.js",
   "scripts": {
     "release:1.0.0": "./node_modules/pkg/lib-es5/bin.js ./pug-generator.js --out-path ./releases/1.0.0",
+    "release:1.0.1": "./node_modules/pkg/lib-es5/bin.js ./pug-generator.js --out-path ./releases/1.0.1",
     "test": "jest"
   },
   "author": "anderson.mo.carvalho@gmail.com",

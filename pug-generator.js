@@ -5,7 +5,6 @@ const { program } = require('commander')
 process.setMaxListeners(0)
 
 const {
-  validateTemplatePath,
   listFilesInDirectory,
   createProcessingList,
   processDiretory,
@@ -37,9 +36,12 @@ const {
       .filter(item => item.isDirectory)
       .map(directory => processDiretory(directory))
 
-  processingList
+  const templates = processingList
       .filter(item => !item.isDirectory)
-      .map(template => processTemplate(template.source, template.destination, context) )
+
+  for (const template of templates) {
+    await processTemplate(template, context)
+  }
 }
 
 main().catch(err => console.log(err))
