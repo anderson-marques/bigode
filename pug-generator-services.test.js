@@ -1,7 +1,7 @@
 const {
   pathExists,
   getPathStats,
-  validateTemplatePath,
+  validateDirectoryPath,
   listFilesInDirectory,
   createProcessingList,
   processDiretory,
@@ -22,8 +22,8 @@ describe('pug-generator-services unit tests', function (){
     expect(getPathStats).toBeDefined()
   })
 
-  test('expect validateTemplatePath to be defined', () => {
-    expect(validateTemplatePath).toBeDefined()
+  test('expect validateDirectoryPath to be defined', () => {
+    expect(validateDirectoryPath).toBeDefined()
   })
 
   test('expect listFilesInDirectory to be defined', () => {
@@ -50,12 +50,12 @@ describe('pug-generator-services unit tests', function (){
     return expect(pathExists(FAKE_TEMPLATE_DIRECTORY)).resolves.toBe(false)
   })
 
-  test('expect validateTemplatePath with fake-template to raise error', () => {
-    return expect(validateTemplatePath(FAKE_TEMPLATE_DIRECTORY)).rejects.toThrow('Template folder \"./__test__/fake-template\" not found!')
+  test('expect validateDirectoryPath with fake-template to raise error', () => {
+    return expect(validateDirectoryPath(FAKE_TEMPLATE_DIRECTORY)).rejects.toThrow('Diretory \"./__test__/fake-template\" not found!')
   })
 
-  test('expect validateTemplatePath with simple-file.txt to raise error', () => {
-    return expect(validateTemplatePath(SIMPLE_FILE)).rejects.toThrow('Template \"./__test__/simple-file.txt\" is not a directory!')
+  test('expect validateDirectoryPath with simple-file.txt to raise error', () => {
+    return expect(validateDirectoryPath(SIMPLE_FILE)).rejects.toThrow('File \"./__test__/simple-file.txt\" is not a directory!')
   })
 
   test('expect listFilesInDirectory to have 5 itens', () => {
