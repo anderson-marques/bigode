@@ -1,11 +1,12 @@
 {
-  "name": "pug-generator",
-  "version": "1.0.1",
-  "description": "A simple generator that take some files and generate a project",
-  "main": "pug-generator.js",
+  "name": "bigode",
+  "version": "1.0.0",
+  "description": "Bigode is a CLI generator tool that takes a projectName, a templateFolder embeded with Mustache tags and generates a new project.",
+  "main": "bigode.js",
   "scripts": {
-    "release:1.0.0": "./node_modules/pkg/lib-es5/bin.js ./pug-generator.js --out-path ./releases/1.0.0",
-    "release:1.0.1": "./node_modules/pkg/lib-es5/bin.js ./pug-generator.js --out-path ./releases/1.0.1",
+    "local:example" : "node ./bigode.js -p my-awesome-project/ -t ./__test__/example-template/ -c ./__test__/answers.json",
+    "without:arguments" : "node ./bigode.js",
+    "create:release": "./node_modules/pkg/lib-es5/bin.js ./bigode.js --out-path ./releases/$npm_package_version",
     "test": "jest"
   },
   "author": "anderson.mo.carvalho@gmail.com",
@@ -13,7 +14,7 @@
   "dependencies": {
     "commander": "^5.1.0",
     "glob": "^7.1.6",
-    "pug": "^2.0.4"
+    "mustache": "^4.0.1"
   },
   "devDependencies": {
     "jest": "^26.0.1",

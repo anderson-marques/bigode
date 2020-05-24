@@ -27,7 +27,7 @@ You can install `inquire` in MacOS using Homebrew:
 brew tap anderson-marques/taps && brew install inquire
 ```
 
-Example or inquire usage:
+Example of usage with inquire:
 
 ```bash
 $ inquire \
@@ -45,3 +45,7 @@ $ bigode \
   --template-project ./templates/my-amazing-company-spring-boot-template \
   --context-file context.json
 ```
+
+## Linux and Windows Users
+
+You can download the binary for your OS directly from the project's releases page.
