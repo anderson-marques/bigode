@@ -40,10 +40,9 @@ const {
   // Generates a list of objects for processing with: isDirectory, source, destination
   const processingList = createProcessingList(files, templatePath, projectName)
 
-  // Process synchronously to avoid probles
-  for (const fileToProcess of processingList) {
-    await processFile(fileToProcess, context)
-  }
+  processingList.forEach(fileToProcess => {
+    processFile(fileToProcess, context)
+  })
 }
 
 main().catch(err => console.log(err))

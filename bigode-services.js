@@ -8,7 +8,7 @@ const {
     lstatSync,
     mkdirSync,
     readFileSync,
-    writeFile,
+    writeFileSync,
 } = require('fs')
 
 const {
@@ -60,26 +60,28 @@ const listFilesInDirectory = async directoryPath => {
  * @param {*} context
  */
 const processFile = (fileToProcess, context) =>  {
-    return new Promise((resolve, reject)=> {
          // Try to create the destination folder/subfolder before write the file
          try {
-             mkdirSync(dirname(fileToProcess.destination), { recursive: true } );
+            let destinationDir = fileToProcess.isDirectory ? fileToProcess.destination : dirname(fileToProcess.destination)
+
+            if (!_pathExists(destinationDir)) {
+                mkdirSync(destinationDir, { recursive: true } );
+            }
          } catch (e) {
-             console.log('Cannot create folder ', e);
+            console.log('Cannot create folder ', e);
          }
 
          // In case the file is not a directory the Mustache will render its content
          if (!fileToProcess.isDirectory) {
-             // Reads the template content from the source
-             const templateContent = readFileSync(fileToProcess.source,'utf-8')
+            // Reads the template content from the source
+            const templateContent = readFileSync(fileToProcess.source,'utf-8')
 
-             // Produces the rendered file content
-             const renderedFile = Mustache.render(templateContent, context)
+            // Produces the rendered file content
+            const renderedFile = Mustache.render(templateContent, context)
 
-             // Write the rendered file in the destination folder
-             writeFile(fileToProcess.destination, renderedFile, err => err ? reject(err) : resolve() )
+            // Write the rendered file in the destination folder
+            writeFileSync(fileToProcess.destination, renderedFile)
          }
-    })
  }
 
 /**
