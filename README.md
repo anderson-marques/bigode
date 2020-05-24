@@ -1,37 +1,47 @@
-# Pug Generator
+# Bigode
 
-Pug generator that get the a context in JSON format and a template folder as arguments and creates a project.
+Bigode is a CLI generator tool that takes a projectName, a templateFolder embeded with Mustache tags, and a context file in JSON and generates a new project.
 
-- It uses pug template engine to process the template folder
-- Pug files should be suffixed with `.pug` extension. Example: `index.html.pug` -> `index.html`
+- It uses Mustache template engine to process the template folder
 
 ```bash
-pug-generator context.json ./my-company-spring-boot-template
+bigode \
+  --project-name my-new-awesome-project \
+  --template-project ./my-company-spring-boot-template \
+  --context-file context.json
 ```
 
-## Usage with inquire
+You can install `bigode` in MacOS using Homebrew:
 
-The Pug generator fits well with the [Inquire CLI](https://github.com/anderson-marques/homebrew-inquire).
+```
+brew tap anderson-marques/taps && brew install bigode
+```
 
-Example:
+## Usage with inquire CLI
+
+The Bigode generator fits well with the [Inquire CLI](https://github.com/anderson-marques/inquire).
+
+You can install `inquire` in MacOS using Homebrew:
+
+```
+brew tap anderson-marques/taps && brew install inquire
+```
+
+Example or inquire usage:
 
 ```bash
-inquire -q ./questions.js
-$ Inform your project name my-new-microservice
+$ inquire \
+  --questions-file ./spring-boot-questions.js\
+  --answers-file context.json
+$ Inform your project name my-new-awesome-project
 $ Choose between Java or Kotlin:
 [x] - Kotlin
 [ ] - Java
-pug-generator answers.json ./my-company-spring-boot-template
-```
-
-## Example:
-
-```bash
-pug-generator -p my-awesome-project -t ./__test__/example-template -c answers.json
-```
-
-or
-
-```bash
-pug-generator --project-name my-awesome-project --template-project ./__test__/example-template --context-file answers.json
+$ ? Actuator (y/N): y
+$
+$
+$ bigode \
+  --project-name my-new-awesome-project \
+  --template-project ./templates/my-amazing-company-spring-boot-template \
+  --context-file context.json
 ```
